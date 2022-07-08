@@ -1,8 +1,8 @@
-import mongoose from "mongoose";
-import bcrypt from "bcrypt";
-const { Schema, model } = mongoose;
+import mongoose from "mongoose"
+import bcrypt from "bcrypt"
+const { Schema, model } = mongoose
 
-const accomodationSchema = new Schema(
+const accommodationSchema = new Schema(
   {
     name: {
       type: String,
@@ -24,6 +24,6 @@ const accomodationSchema = new Schema(
   {
     timestamps: true,
   }
-);
+)
 
-export default model("Accomodation", accomodationSchema);
+export default model("Accommodation", accommodationSchema)

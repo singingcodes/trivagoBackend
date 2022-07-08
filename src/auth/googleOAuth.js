@@ -11,7 +11,7 @@ const googleStrategy = new GoogleStrategy(
   async (_, __, profile, passportNext) => {
     try {
       // This callback function is executed when Google sends us a successfull response back
-      // Here we are receiving some informations about the user from Google (scopes --> email, profile)
+      // Here we are receiving some information about the user from Google (scopes --> email, profile)
 
       // 1. Check if the user is already in our db
       const user = await UsersModel.findOne({ email: profile._json.email });
