@@ -1,46 +1,30 @@
-import express from "express"
-import mongoose from "mongoose"
-import listEndpoints from "express-list-endpoints"
-import createError from "http-errors"
-import cors from "cors"
-import {
-  unauthorizedHandler,
-  forbiddenHandler,
-  catchAllHandler,
-  notFoundHandler,
-} from "./errorHandlers.js"
-import userRouter from "./apis/users/index.js"
-import accommodationRouter from "./apis/accommodation/index.js"
-import passport from "passport"
-import googleStrategy from "./auth/googleOAuth.js"
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.server = void 0;
+const express_1 = __importDefault(require("express"));
+const cors_1 = __importDefault(require("cors"));
+const errorHandlers_1 = require("./errorHandlers");
+const index_1 = __importDefault(require("./apis/users/index"));
+const index_2 = __importDefault(require("./apis/accommodation/index"));
+const passport_1 = __importDefault(require("passport"));
+//import googleStrategy from "./auth/googleOAuth"
 // import facebookStrategy from "./auth/facebookOAuth.js"
-
-const server = express()
-const port = process.env.PORT || 3001
-passport.use("google", googleStrategy)
+const server = (0, express_1.default)();
+exports.server = server;
+//passport.use("google", googleStrategy)
 // passport.use("facebook", facebookStrategy)
-
 // ************************************** MIDDLEWARES *****************************************
-
-server.use(cors())
-server.use(express.json())
-server.use(passport.initialize())
-
+server.use((0, cors_1.default)());
+server.use(express_1.default.json());
+server.use(passport_1.default.initialize());
 // ************************************** ENDPOINTS *******************************************
-server.use("/users", userRouter)
-server.use("/accommodation", accommodationRouter)
-
+server.use("/users", index_1.default);
+server.use("/accommodation", index_2.default);
 // ************************************* ERROR HANDLERS ***************************************
-server.use(unauthorizedHandler)
-server.use(forbiddenHandler)
-server.use(catchAllHandler)
-server.use(notFoundHandler)
-
-mongoose.connect(process.env.MONGO_CONNECTION)
-
-mongoose.connection.on("connected", () => {
-  console.log("Connected to Mongo!")
-  server.listen(port, () => {
-    console.table(listEndpoints(server))
-  })
-})
+server.use(errorHandlers_1.unauthorizedHandler);
+server.use(errorHandlers_1.forbiddenHandler);
+server.use(errorHandlers_1.catchAllHandler);
+server.use(errorHandlers_1.notFoundHandler);

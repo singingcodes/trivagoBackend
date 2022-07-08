@@ -2,10 +2,10 @@
   "name": "m8d5_trivago_backend_oauth_benchmark",
   "version": "1.0.0",
   "main": "index.js",
-  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon -r dotenv/config -e js ./src/server.js"
+    "test": "jest --watchAll",
+    "dev": "nodemon -r dotenv/config ./src/index.ts",
+    "build": "tsc"
   },
   "repository": {
     "type": "git",
@@ -33,10 +33,13 @@
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
+    "@types/cors": "^2.8.12",
     "@types/express": "^4.17.13",
     "@types/express-list-endpoints": "^6.0.0",
     "@types/http-errors": "^1.8.2",
     "@types/jest": "^28.1.4",
+    "@types/jsonwebtoken": "^8.5.8",
+    "@types/passport": "^1.0.9",
     "@types/supertest": "^2.0.12",
     "dotenv": "^16.0.1",
     "jest": "^28.1.2",

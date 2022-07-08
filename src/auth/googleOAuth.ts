@@ -1,7 +1,7 @@
-"use strict";
 // import GoogleStrategy from "passport-google-oauth20";
 // import UsersModel from "../apis/users/model.js";
 // import { generateAccessTokenForGoogle } from "./tools.js";
+
 // const googleStrategy = new GoogleStrategy(
 //   {
 //     clientID: process.env.GOOGLE_CLIENT_ID,
@@ -12,8 +12,10 @@
 //     try {
 //       // This callback function is executed when Google sends us a successfull response back
 //       // Here we are receiving some information about the user from Google (scopes --> email, profile)
+
 //       // 1. Check if the user is already in our db
 //       const user = await UsersModel.findOne({ email: profile._json.email });
+
 //       if (user) {
 //         // 2. If he/she is there --> generate accessToken (optionally a refreshToken)
 //         const token = await generateAccessTokenForGoogle(user);
@@ -22,6 +24,7 @@
 //       } else {
 //         // 4. Else if the user is not in our db --> create that user and generate an accessToken (optionally a refreshToken)
 //         const { given_name, family_name, email } = profile._json;
+
 //         const newUser = new UsersModel({
 //           firstName: given_name,
 //           lastName: family_name,
@@ -39,4 +42,5 @@
 //     }
 //   }
 // );
+
 // export default googleStrategy;
